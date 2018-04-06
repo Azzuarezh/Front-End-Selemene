@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {      
-    	files:['Gruntfile.js','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json'],
+    	files:['Gruntfile.js','index.html','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json'],
     	tasks: ['wiredep'],
     	options: {
                 livereload: true,

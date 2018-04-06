@@ -30,7 +30,8 @@
     "angular-sanitize": "^1.5.8",
     "sockjs": "^0.3.4",
     "font-mfizz": "^2.0.1",
-    "metisMenu": "metismenu#^2.7.4"
+    "metisMenu": "metismenu#^2.7.4",
+    "angular-toastr": "^2.1.1"
   },
   "overrides": {
     "angular": {
