@@ -11,37 +11,35 @@
                 <div class="modal-body">
                 	<div class="form-group">
 					    <label for="driver"><i class="fa fa-gears"></i> Driver Class:</label>
-					        <select id="driver" name="driver" class="form-control selectpicker" ng-model="driverClass"
+					        <select id="driver" name="driver" class="form-control" ng-model="$parent.driver"
 					        title="Choose the suitable Database Driver.">
-					        	<option ng-selected="selectedDriver.value == driver.value" 
-					        			ng-repeat="driver in listDriver" 
-					        			ng-value="driver.value" data-icon="icon-{{driver.icon}}">{{driver.label}}
+					        	<option ng-repeat="driver in listDriver" 
+					        			ng-value="driver.value">{{driver.label}}
 					        	</option>					          
-					        </select>
-					        {{selectedDriver.value}}
+					        </select>					        
 					</div>
 					    <div class="form-group">
 					       <label for="serverName"><i class="fa fa-server"></i> Server Name:</label>
-					           <input type="text" class="form-control" name="serverName" ng-model="serverName" id="serverName" placeholder="type your server name/server ip ..." />
+					           <input type="text" class="form-control" name="serverName" ng-model="$parent.serverName" id="serverName" 
+					           placeholder="type your server name/server ip ..." />
 					   </div>
 					   <div class="form-group">
 					       <label for="port"><i class="fa fa-plug"></i> Port:</label>
-					           <input type="number" class="form-control" name="port" ng-model="port" id="port" placeholder="port will be default if this field is null ..." />
+					           <input type="number" class="form-control" name="port" ng-model="$parent.port" id="port" placeholder="port will be default if this field is null ..." />
 					   </div>
 					   <div class="form-group">
 					       <label for="userName"><i class="fa fa-user"></i> User Name:</label>
-					           <input type="text" class="form-control" name="userName" id="userName" ng-model="userName" placeholder="Type your name .." />
+					           <input type="text" class="form-control" name="userName" id="userName" ng-model="$parent.userName" placeholder="Type your name .." />
 					   </div>
 					   <div class="form-group">
 					       <label for="password"><i class="fa fa-lock"></i> Password:</label>
-					       <input type="password" class="form-control" name="password" id="password" placeholder="Type your password ..." ng-model="password"/>                          
+					       <input type="password" class="form-control" name="password" id="password" placeholder="Type your password ..." ng-model="$parent.password"/>                          
 					   </div>
-					   <div>
-					   	{{driverClass}} - {{serverName}} -  {{port}} - {{userName}} - {{password}}
+					   <div>					   	
 					   </div>
                 </div>
                 <div class="modal-footer">
-                	<button ng-repeat="btn in dialog.btnControl" id="{{btn.btnId}}" class="btn btn-{{btn.btnClass}} btn-md-1 tip" title="{{btn.btnText}}"><i class="{{btn.btnIcon}}" ng-click="'{{btn.action}}'"></i></button>
+                	<button ng-repeat="btn in dialog.btnControl" id="{{btn.btnId}}" class="btn btn-{{btn.btnClass}} btn-md-1 tip" title="{{btn.btnText}}"><i class="{{btn.btnIcon}}" ng-click="testConnection()"></i></button>
                 </div>
             </div>
         </div>

@@ -7,6 +7,10 @@ app.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/index.html'));
   //__dirname : It will resolve to your project folder.
 });
+app.get('/sampah',function(req,res){
+	  res.sendFile(path.join(__dirname+'/sampah.html'));
+	  //__dirname : It will resolve to your project folder.
+	});
 
 app.use('/lib',express.static(__dirname + '/lib'));
 app.use('/template',express.static(__dirname + '/template'));

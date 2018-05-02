@@ -1,34 +1,50 @@
 module.exports = function(grunt) {
-
-  grunt.initConfig({
-    jshint: {      
-      files: ['Gruntfile.js','lib/*','template/*','bower_components/*','bower.json','package.json'],
-      options: {
-        globals: {
-          jQuery: true
-        }
-      }
+  grunt.initConfig({    
+    wiredep:{
+       task: {           
+          expand:true,
+            src: ['index.html','sampah.html'],            
+            dependencies:true
+          },          
     },
     watch: {      
-    	files:['Gruntfile.js','index.html','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json'],
-    	tasks: ['wiredep'],
-    	options: {
+      files:['Gruntfile.js','sampah.html','index.html','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json','server.js'],
+      tasks: ['wiredep'],
+      options: {
                 livereload: true,
               }
     },    
-    wiredep:{
-    	 task: {    		   
-    		 	expand:true,
-    		    src: 'index.html',    		    
-    		    dependencies:true
-    		  },    		  
-    	}
+    run: {    
+      target: {      
+        args: ['server.js']
+      }
+    },
+     open: {
+      chrome: {
+        path: 'http://localhost:8000',
+        app: 'Google Chrome'
+      },
+      mozilla: {
+        path: 'http://localhost:8000',
+        app: 'Firefox'
+      } 
+    },
+    concurrent: {
+      target: {
+        tasks: [['run:target'],'wiredep','watch'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    }      
+       
   });
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  
+  grunt.loadNpmTasks('grunt-contrib-watch');  
   grunt.loadNpmTasks('grunt-wiredep');
-
-  grunt.registerTask('default',['wiredep','watch']);
+  grunt.loadNpmTasks('grunt-run');
+  grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.registerTask('default',['concurrent:target']);
 
 };
