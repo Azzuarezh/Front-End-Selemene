@@ -8,39 +8,49 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title"><i class="{{dialog.iconTitle}}"></i> {{dialog.title}}</h4>
              </div>
+             <ng-form id="frmConnect" name="frmConnect">
                 <div class="modal-body">
                 	<div class="form-group">
 					    <label for="driver"><i class="fa fa-gears"></i> Driver Class:</label>
-					        <select id="driver" name="driver" class="form-control" ng-model="$parent.driver"
-					        title="Choose the suitable Database Driver.">
+					        <select id="driver" name="driver" class="form-control" ng-model="$parent.frmConnect.driver"
+					        title="Choose the suitable Database Driver." required="required">
 					        	<option ng-repeat="driver in listDriver" 
 					        			ng-value="driver.value">{{driver.label}}
 					        	</option>					          
-					        </select>					        
+					        </select>
+					        <span class="label label-danger"
+					        ng-show="frmConnect.driver.$touched && frmConnect.driver.$invalid">please select the database driver.</span>					        
 					</div>
 					    <div class="form-group">
 					       <label for="serverName"><i class="fa fa-server"></i> Server Name:</label>
-					           <input type="text" class="form-control" name="serverName" ng-model="$parent.serverName" id="serverName" 
+					           <input type="text" class="form-control" name="serverName" ng-model="$parent.frmConnect.serverName" id="serverName" required="required" 
 					           placeholder="type your server name/server ip ..." />
+					        <span class="label label-danger"
+					        ng-show="frmConnect.serverName.$touched && frmConnect.serverName.$invalid">please enter the server name.</span>
 					   </div>
 					   <div class="form-group">
 					       <label for="port"><i class="fa fa-plug"></i> Port:</label>
-					           <input type="number" class="form-control" name="port" ng-model="$parent.port" id="port" placeholder="port will be default if this field is null ..." />
+					           <input type="number" class="form-control" name="port" ng-model="$parent.frmConnect.port" id="port" placeholder="port will be default if this field is null ..." />
 					   </div>
 					   <div class="form-group">
 					       <label for="userName"><i class="fa fa-user"></i> User Name:</label>
-					           <input type="text" class="form-control" name="userName" id="userName" ng-model="$parent.userName" placeholder="Type your name .." />
+					           <input type="text" class="form-control" name="userName" required="required" id="userName" ng-model="$parent.frmConnect.userName" placeholder="Type your name .." />
+					           <span class="label label-danger"
+					        ng-show="frmConnect.userName.$touched && frmConnect.userName.$invalid">please enter the user name.</span>
 					   </div>
 					   <div class="form-group">
 					       <label for="password"><i class="fa fa-lock"></i> Password:</label>
-					       <input type="password" class="form-control" name="password" id="password" placeholder="Type your password ..." ng-model="$parent.password"/>                          
+					       <input type="password" class="form-control" name="password" id="password" placeholder="Type your password ..." ng-model="$parent.frmConnect.password"/>                          
 					   </div>
 					   <div>					   	
 					   </div>
                 </div>
                 <div class="modal-footer">
-                	<button ng-repeat="btn in dialog.btnControl" id="{{btn.btnId}}" class="btn btn-{{btn.btnClass}} btn-md-1 tip" title="{{btn.btnText}}"><i class="{{btn.btnIcon}}" ng-click="testConnection()"></i></button>
+                	<button ng-repeat="btn in dialog.btnControl" id="{{btn.btnId}}" class="btn btn-{{btn.btnClass}} btn-md-1 tip" title="{{btn.btnText}}"><i class="{{btn.btnIcon}}"
+                	ng-click="testConnection()" 
+                	ng-disabled="$parent.frmConnect.$invalid"></i></button>                	
                 </div>
+                </ng-form>               
             </div>
         </div>
 </div>

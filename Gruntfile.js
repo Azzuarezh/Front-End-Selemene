@@ -3,12 +3,12 @@ module.exports = function(grunt) {
     wiredep:{
        task: {           
           expand:true,
-            src: ['index.html','sampah.html'],            
+            src: ['index.html'],            
             dependencies:true
           },          
     },
     watch: {      
-      files:['Gruntfile.js','sampah.html','index.html','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json','server.js'],
+      files:['Gruntfile.js','index.html','lib/**/*','template/**/*','bower_components/**/*','bower.json','package.json','server.js'],
       tasks: ['wiredep'],
       options: {
                 livereload: true,
